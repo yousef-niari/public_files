@@ -5,7 +5,7 @@ $cert = New-SelfSignedCertificate -DnsName $env:COMPUTERNAME -CertStoreLocation 
 $thumb = $cert.Thumbprint
 
 # Create WinRM HTTPS listener
-winrm create winrm/config/Listener?Address=*+Transport=HTTPS "@{Hostname='$env:COMPUTERNAME'; CertificateThumbprint='$thumb'}"
+winrm create winrm/config/Listener?Address=*+Transport=HTTPS "@{Hostname=`"$env:COMPUTERNAME`"; CertificateThumbprint=`"$thumb`"}"
 
 Set-Item -Path WSMan:\localhost\Service\Auth\Basic -Value $true
 Set-Item -Path WSMan:\localhost\Service\AllowUnencrypted -Value $false
